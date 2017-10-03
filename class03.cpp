@@ -32,6 +32,7 @@ void remove_duplicates(L* l) {
         while (t != nullptr) {
             if (s->getData() == t->getData()) {
                 L* p = t->getNext();
+                t->setNext(nullptr);
                 delete t;
                 t = p;
             }
@@ -61,4 +62,6 @@ void demonstrate_class03() {
     std::cout << "reverse the list again:" << std::endl;
     reverse(l);
     print_list(l);
+
+    delete l;
 }
