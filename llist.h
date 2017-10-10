@@ -1,16 +1,17 @@
 #ifndef UNTITLED_LLIST_H
 #define UNTITLED_LLIST_H
 
+template <typename T = int>
 class L {
 public:
     // constructors
-    L() : data(0), next(nullptr) { }
-    explicit L(int pdata) : data(pdata), next(nullptr) { }
-    L(L* l, int pdata) : data(pdata), next(l) { }
+    L() : data(T(0)), next(nullptr) { }
+    explicit L(T pdata) : data(pdata), next(nullptr) { }
+    L(L* l, T pdata) : data(pdata), next(l) { }
     ~L() { if (next != nullptr) delete next; }
 
     // getters, setters
-    int getData() const {
+    T getData() const {
         return data;
     }
 
@@ -18,7 +19,7 @@ public:
         return next;
     }
 
-    void setData(int pdata) {
+    void setData(T pdata) {
         data = pdata;
     }
 
@@ -37,7 +38,7 @@ public:
     }
 
 private:
-    int data;
+    T data;
     L* next;
 };
 

@@ -4,6 +4,7 @@
 #include "llist.h"
 #include <iostream>
 
+template <typename T = int>
 class Set {
 public:
     Set() : start(nullptr), size(0) { }
@@ -13,10 +14,17 @@ public:
      * @param set
      */
     Set(const Set& set) : start(nullptr), size(0) {
-        for (L* l = set.start; l != nullptr; l = l->getNext()) {
+        for (L<T>* l = set.start; l != nullptr; l = l->getNext()) {
             add(l->getData());
         }
         size = set.size;
+    }
+
+    ~Set() {
+        if (start != nullptr) {
+            delete start;
+        }
+        start = nullptr;
     }
 
     /**
@@ -30,7 +38,7 @@ public:
      * Resets the whole set (deletes every element).
      */
     void reset() {
-        L* l = nullptr;
+        L<T>* l = nullptr;
         while (start != nullptr) {
             l = start->getNext();
             start->setNext(nullptr);
@@ -44,9 +52,9 @@ public:
     /**
      * Adds a new element to the set
      */
-    void add(int e) {
+    void add(T e) {
         if (!contains(e)) {
-            start = new L(start, e);
+            start = new L<T>(start, e);
             size += 1;
         }
     }
@@ -54,13 +62,13 @@ public:
     /**
      * Returns an element from the set.
      */
-    int pop() {
+    T pop() {
         if (start == nullptr) {
             // error
             throw -1;
         }
-        int d = start->getData();
-        L* next = start->getNext();
+        T d = start->getData();
+        L<T>* next = start->getNext();
         start->setNext(nullptr);
         delete start;
         start = next;
@@ -79,8 +87,8 @@ public:
      * Returns true iff the given element is inside the set.
      * @param e
      */
-    bool contains(int e) const {
-        for (L* l = start; l != nullptr; l = l->getNext()) {
+    bool contains(T e) const {
+        for (L<T>* l = start; l != nullptr; l = l->getNext()) {
             if (l->getData() == e) {
                 return true;
             }
@@ -94,7 +102,7 @@ public:
     }
 
 private:
-    L* start;
+    L<T>* start;
     int size;
 };
 

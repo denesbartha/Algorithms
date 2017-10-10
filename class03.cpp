@@ -2,7 +2,7 @@
 #include "llist.h"
 
 
-void print_list(L* l) {
+void print_list(L<>* l) {
     for (; l != nullptr; l = l->getNext()) {
         std::cout << l->getData() << " ";
     }
@@ -10,13 +10,13 @@ void print_list(L* l) {
 }
 
 
-void reverse(L*& l) {
+void reverse(L<>*& l) {
     if (l != nullptr) {
-        L* s = l;
-        L* t = l->getNext();
+        L<>* s = l;
+        L<>* t = l->getNext();
         s->setNext(nullptr);
         while (t != nullptr) {
-            L* p = t->getNext();
+            L<>* p = t->getNext();
             t->setNext(s);
             s = t, t = p;
         }
@@ -25,13 +25,13 @@ void reverse(L*& l) {
 }
 
 
-void remove_duplicates(L* l) {
+void remove_duplicates(L<>* l) {
     if (l != nullptr) {
-        L* s = l;
-        L* t = l->getNext();
+        L<>* s = l;
+        L<>* t = l->getNext();
         while (t != nullptr) {
             if (s->getData() == t->getData()) {
-                L* p = t->getNext();
+                L<>* p = t->getNext();
                 t->setNext(nullptr);
                 delete t;
                 t = p;
@@ -47,7 +47,10 @@ void remove_duplicates(L* l) {
 
 
 void demonstrate_class03() {
-    L* l = new L(new L(new L(new L(new L(new L(5), 5), 5), 3), 1), 1);
+    std::cout << "####################################" << std::endl;
+    std::cout << "######Demonstrate Class03###########" << std::endl;
+    std::cout << "####################################" << std::endl;
+    L<>* l = new L<>(new L<>(new L<>(new L<>(new L<>(new L<>(5), 5), 5), 3), 1), 1);
     std::cout << "original order:" << std::endl;
     print_list(l);
     std::cout << "reversed order:" << std::endl;
