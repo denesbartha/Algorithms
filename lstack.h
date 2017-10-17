@@ -64,6 +64,13 @@ public:
         return size;
     }
 
+    /**
+     * @return true iff the size is 0
+     */
+    bool isEmpty() const {
+        return size == 0;
+    }
+
 private:
     L<T>* stack;
     int size;

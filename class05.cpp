@@ -41,7 +41,7 @@ void demonstrate_class05() {
     }
     catch (int e) {
         if (e == -1) {
-            std::cout << "The pop operation failed for the empty set..." << std::endl;
+            std::cout << "The pop operation failed for the empty stack..." << std::endl;
             std::cout << "Size of the stack: " << s.Size() << std::endl;
         }
     }
